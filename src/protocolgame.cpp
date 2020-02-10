@@ -2989,32 +2989,32 @@ void ProtocolGame::AddPlayerSkills(NetworkMessage& msg)
 {
 	msg.AddByte(0xA1);
 
-	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_FIST, SKILLVALUE_LEVEL)));
-	msg.add<uint16_t>(player->getBaseSkill(SKILL_FIST));
+	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_FIST, SKILLVALUE_LEVEL)));
+	msg.AddByte(player->getBaseSkill(SKILL_FIST));
 	msg.AddByte(player->getSkill(SKILL_FIST, SKILLVALUE_PERCENT));
 
-	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_CLUB, SKILLVALUE_LEVEL)));
-	msg.add<uint16_t>(player->getBaseSkill(SKILL_CLUB));
+	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_CLUB, SKILLVALUE_LEVEL)));
+	msg.AddByte(player->getBaseSkill(SKILL_CLUB));
 	msg.AddByte(player->getSkill(SKILL_CLUB, SKILLVALUE_PERCENT));
 
-	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_SWORD, SKILLVALUE_LEVEL)));
-	msg.add<uint16_t>(player->getBaseSkill(SKILL_SWORD));
+	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_SWORD, SKILLVALUE_LEVEL)));
+	msg.AddByte(player->getBaseSkill(SKILL_SWORD));
 	msg.AddByte(player->getSkill(SKILL_SWORD, SKILLVALUE_PERCENT));
 
-	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_AXE, SKILLVALUE_LEVEL)));
-	msg.add<uint16_t>(player->getBaseSkill(SKILL_AXE));
+	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_AXE, SKILLVALUE_LEVEL)));
+	msg.AddByte(player->getBaseSkill(SKILL_AXE));
 	msg.AddByte(player->getSkill(SKILL_AXE, SKILLVALUE_PERCENT));
 
-	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_DISTANCE, SKILLVALUE_LEVEL)));
-	msg.add<uint16_t>(player->getBaseSkill(SKILL_DISTANCE));
+	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_DISTANCE, SKILLVALUE_LEVEL)));
+	msg.AddByte(player->getBaseSkill(SKILL_DISTANCE));
 	msg.AddByte(player->getSkill(SKILL_DISTANCE, SKILLVALUE_PERCENT));
 
-	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_SHIELD, SKILLVALUE_LEVEL)));
-	msg.add<uint16_t>(player->getBaseSkill(SKILL_SHIELD));
+	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_SHIELD, SKILLVALUE_LEVEL)));
+	msg.AddByte(player->getBaseSkill(SKILL_SHIELD));
 	msg.AddByte(player->getSkill(SKILL_SHIELD, SKILLVALUE_PERCENT));
 
-	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_FISHING, SKILLVALUE_LEVEL)));
-	msg.add<uint16_t>(player->getBaseSkill(SKILL_FISHING));
+	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_FISHING, SKILLVALUE_LEVEL)));
+	msg.AddByte(player->getBaseSkill(SKILL_FISHING));
 	msg.AddByte(player->getSkill(SKILL_FISHING, SKILLVALUE_PERCENT));
 }
 

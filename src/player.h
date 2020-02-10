@@ -948,17 +948,7 @@ class Player : public Creature, public Cylinder
 			}
 		}
 		void sendPing();
-		void sendPingBack() const {
-			if (client) {
-				client->sendPingBack();
-			}
-		}
 		void sendStats();
-		void sendBasicData() const {
-			if (client) {
-				client->sendBasicData();
-			}
-		}
 		void sendSkills() const {
 			if (client) {
 				client->sendSkills();

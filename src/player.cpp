@@ -4170,7 +4170,6 @@ bool Player::isPremium() const
 void Player::setPremiumDays(int32_t v)
 {
 	premiumDays = v;
-	sendBasicData();
 }
 
 void Player::setGuildLevel(uint8_t newGuildLevel)

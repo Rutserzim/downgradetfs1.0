@@ -132,10 +132,6 @@ void NetworkMessage::AddItem(uint16_t id, uint8_t count)
 	} else if (it.isSplash() || it.isFluidContainer()) {
 		AddByte(fluidMap[count & 7]);
 	}
-
-	if (it.isAnimation) {
-		AddByte(0xFE);    // random phase (0xFF for async)
-	}
 }
 
 void NetworkMessage::AddItem(const Item* item)
@@ -148,10 +144,6 @@ void NetworkMessage::AddItem(const Item* item)
 		AddByte(std::min<uint16_t>(0xFF, item->getItemCount()));
 	} else if (it.isSplash() || it.isFluidContainer()) {
 		AddByte(fluidMap[item->getFluidType() & 7]);
-	}
-
-	if (it.isAnimation) {
-		AddByte(0xFE);    // random phase (0xFF for async)
 	}
 }
 

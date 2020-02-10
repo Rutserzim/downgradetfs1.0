@@ -553,8 +553,6 @@ void ProtocolGame::parsePacket(NetworkMessage& msg)
 
 void ProtocolGame::GetTileDescription(const Tile* tile, NetworkMessage& msg)
 {
-	msg.add<uint16_t>(0x00); //environmental effects
-
 	int32_t count;
 	if (tile->ground) {
 		msg.AddItem(tile->ground);
@@ -2816,8 +2814,6 @@ void ProtocolGame::sendModalWindow(const ModalWindow& modalWindow)
 ////////////// Add common messages
 void ProtocolGame::AddCreature(NetworkMessage& msg, const Creature* creature, bool known, uint32_t remove)
 {
-	CreatureType_t creatureType = creature->getType();
-
 	const Player* otherPlayer = creature->getPlayer();
 
 	if (known) {
@@ -2827,7 +2823,6 @@ void ProtocolGame::AddCreature(NetworkMessage& msg, const Creature* creature, bo
 		msg.add<uint16_t>(0x61);
 		msg.add<uint32_t>(remove);
 		msg.add<uint32_t>(creature->getID());
-		msg.AddByte(creatureType);
 		msg.AddString(creature->getName());
 	}
 
@@ -2871,7 +2866,6 @@ void ProtocolGame::AddPlayerStats(NetworkMessage& msg)
 	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getPlayerInfo(PLAYERINFO_MAXHEALTH)));
 
 	msg.add<uint32_t>(static_cast<uint32_t>(player->getFreeCapacity() * 100));
-	msg.add<uint32_t>(static_cast<uint32_t>(player->getCapacity() * 100));
 
 	msg.add<uint64_t>(player->getExperience());
 
@@ -2882,17 +2876,11 @@ void ProtocolGame::AddPlayerStats(NetworkMessage& msg)
 	msg.add<uint16_t>(std::min<int32_t>(0xFFFF, player->getPlayerInfo(PLAYERINFO_MAXMANA)));
 
 	msg.AddByte(std::min<uint32_t>(0xFF, player->getMagicLevel()));
-	msg.AddByte(std::min<uint32_t>(0xFF, player->getBaseMagicLevel()));
 	msg.AddByte(player->getPlayerInfo(PLAYERINFO_MAGICLEVELPERCENT));
 
 	msg.AddByte(player->getPlayerInfo(PLAYERINFO_SOUL));
 
 	msg.add<uint16_t>(player->getStaminaMinutes());
-
-	msg.add<uint16_t>(player->getBaseSpeed());
-
-	Condition* condition = player->getCondition(CONDITION_REGENERATION);
-	msg.add<uint16_t>(condition ? condition->getTicks() / 1000 : 0x00);
 }
 
 void ProtocolGame::AddPlayerSkills(NetworkMessage& msg)
@@ -2900,31 +2888,24 @@ void ProtocolGame::AddPlayerSkills(NetworkMessage& msg)
 	msg.AddByte(0xA1);
 
 	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_FIST, SKILLVALUE_LEVEL)));
-	msg.AddByte(player->getBaseSkill(SKILL_FIST));
 	msg.AddByte(player->getSkill(SKILL_FIST, SKILLVALUE_PERCENT));
 
 	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_CLUB, SKILLVALUE_LEVEL)));
-	msg.AddByte(player->getBaseSkill(SKILL_CLUB));
 	msg.AddByte(player->getSkill(SKILL_CLUB, SKILLVALUE_PERCENT));
 
 	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_SWORD, SKILLVALUE_LEVEL)));
-	msg.AddByte(player->getBaseSkill(SKILL_SWORD));
 	msg.AddByte(player->getSkill(SKILL_SWORD, SKILLVALUE_PERCENT));
 
 	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_AXE, SKILLVALUE_LEVEL)));
-	msg.AddByte(player->getBaseSkill(SKILL_AXE));
 	msg.AddByte(player->getSkill(SKILL_AXE, SKILLVALUE_PERCENT));
 
 	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_DISTANCE, SKILLVALUE_LEVEL)));
-	msg.AddByte(player->getBaseSkill(SKILL_DISTANCE));
 	msg.AddByte(player->getSkill(SKILL_DISTANCE, SKILLVALUE_PERCENT));
 
 	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_SHIELD, SKILLVALUE_LEVEL)));
-	msg.AddByte(player->getBaseSkill(SKILL_SHIELD));
 	msg.AddByte(player->getSkill(SKILL_SHIELD, SKILLVALUE_PERCENT));
 
 	msg.AddByte(std::min<int32_t>(0xFFFF, player->getSkill(SKILL_FISHING, SKILLVALUE_LEVEL)));
-	msg.AddByte(player->getBaseSkill(SKILL_FISHING));
 	msg.AddByte(player->getSkill(SKILL_FISHING, SKILLVALUE_PERCENT));
 }
 

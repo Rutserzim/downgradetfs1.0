@@ -188,7 +188,6 @@ class ItemType
 		uint16_t id;
 		uint16_t clientId;
 		bool stackable;
-		bool isAnimation;
 
 		std::string name;
 		std::string article;

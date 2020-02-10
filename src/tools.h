@@ -26,6 +26,8 @@
 #include "const.h"
 #include "enums.h"
 
+typedef std::vector<std::pair<uint32_t, uint32_t>> IPList;
+
 std::string transformToSHA1(const std::string& input);
 
 void replaceString(std::string& str, const std::string& sought, const std::string& replacement);

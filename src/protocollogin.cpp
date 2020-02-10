@@ -30,9 +30,11 @@
 #include "tools.h"
 #include "iologindata.h"
 #include "ban.h"
+#include <iomanip>
 #include "game.h"
 
 extern ConfigManager g_config;
+extern IPList serverIPs;
 extern Game g_game;
 
 void ProtocolLogin::disconnectClient(const std::string& message)
@@ -49,6 +51,16 @@ void ProtocolLogin::disconnectClient(const std::string& message)
 
 void ProtocolLogin::getCharacterList(const std::string& accountName, const std::string& password)
 {
+	uint32_t serverIp = serverIPs[0].first;
+	for (uint32_t i = 0; i < serverIPs.size(); i++) {
+		if (getConnection()) {
+			if ((serverIPs[i].first & serverIPs[i].second) == (getConnection()->getIP() & serverIPs[i].second)) {
+				serverIp = serverIPs[i].first;
+				break;
+			}
+		}
+	}
+
 	Account account;
 	if (!IOLoginData::loginserverAuthentication(accountName, password, account)) {
 		disconnectClient("Account name or password is not correct.");
@@ -70,18 +82,13 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 		//Add char list
 		output->AddByte(0x64);
 
-		output->AddByte(1); // number of worlds
-
-		output->AddByte(0); // world id
-		output->AddString(g_config.getString(ConfigManager::SERVER_NAME));
-		output->AddString(g_config.getString(ConfigManager::IP));
-		output->add<uint16_t>(g_config.getNumber(ConfigManager::GAME_PORT));
-		output->AddByte(0);
-
-		output->AddByte(static_cast<uint8_t>(account.charList.size()));
+		output->AddByte((uint8_t)account.charList.size());
 		for (const std::string& characterName : account.charList) {
-			output->AddByte(0);
 			output->AddString(characterName);
+			output->AddString(g_config.getString(ConfigManager::SERVER_NAME));
+			output->add<uint32_t>(serverIp);
+			output->add<uint16_t>(g_config.getNumber(ConfigManager::GAME_PORT));
+			output->AddByte(0x00);
 		}
 
 		//Add premium days

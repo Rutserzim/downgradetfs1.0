@@ -27,7 +27,6 @@ Inbox::Inbox(uint16_t _type) :
 {
 	maxSize = 30;
 	unlocked = false;
-	pagination = true;
 }
 
 Inbox::~Inbox()

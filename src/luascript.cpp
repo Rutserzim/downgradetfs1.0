@@ -182,11 +182,6 @@ uint32_t ScriptEnvironment::addThing(Thing* thing)
 			const Cylinder* parent = item->getParent();
 			if (item->getTile() == parent) {
 				isOnTile = true;
-			} else if (parent) {
-				const Container* parentContainer = parent->getContainer();
-				if (parentContainer && parentContainer->getID() == ITEM_BROWSEFIELD) {
-					isOnTile = true;
-				}
 			}
 
 			if (isOnTile) {

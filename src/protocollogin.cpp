@@ -88,7 +88,6 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 			output->AddString(g_config.getString(ConfigManager::SERVER_NAME));
 			output->add<uint32_t>(serverIp);
 			output->add<uint16_t>(g_config.getNumber(ConfigManager::GAME_PORT));
-			output->AddByte(0x00);
 		}
 
 		//Add premium days
@@ -117,11 +116,7 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 	msg.get<uint16_t>();
 	uint16_t version = msg.get<uint16_t>();
 
-	if (version >= 971) {
-		msg.SkipBytes(17);
-	} else {
-		msg.SkipBytes(12);
-	}
+	msg.SkipBytes(12);
 
 	/*
 	 * Skipped bytes:

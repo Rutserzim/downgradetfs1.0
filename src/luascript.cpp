@@ -1719,13 +1719,6 @@ void LuaScriptInterface::registerFunctions()
 	registerEnum(GUEST_LIST)
 	registerEnum(SUBOWNER_LIST)
 
-	// Use with npc:setSpeechBubble
-	registerEnum(SPEECHBUBBLE_NONE)
-	registerEnum(SPEECHBUBBLE_NORMAL)
-	registerEnum(SPEECHBUBBLE_TRADE)
-	registerEnum(SPEECHBUBBLE_QUEST)
-	registerEnum(SPEECHBUBBLE_QUESTTRADER)
-
 	// Use with player:addMapMark
 	registerEnum(MAPMARK_TICK)
 	registerEnum(MAPMARK_QUESTION)
@@ -2376,9 +2369,6 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Npc", "isNpc", LuaScriptInterface::luaNpcIsNpc);
 
 	registerMethod("Npc", "setMasterPos", LuaScriptInterface::luaNpcSetMasterPos);
-
-	registerMethod("Npc", "getSpeechBubble", LuaScriptInterface::luaNpcGetSpeechBubble);
-	registerMethod("Npc", "setSpeechBubble", LuaScriptInterface::luaNpcSetSpeechBubble);
 
 	// Guild
 	registerClass("Guild", "", LuaScriptInterface::luaGuildCreate);
@@ -10020,28 +10010,6 @@ int32_t LuaScriptInterface::luaNpcSetMasterPos(lua_State* L)
 	npc->setMasterPos(pos, radius);
 	pushBoolean(L, true);
 	return 1;
-}
-
-int32_t LuaScriptInterface::luaNpcGetSpeechBubble(lua_State* L)
-{
-	// npc:getSpeechBubble()
-	Npc* npc = getUserdata<Npc>(L, 1);
-	if (npc) {
-		lua_pushnumber(L, npc->getSpeechBubble());
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
-int32_t LuaScriptInterface::luaNpcSetSpeechBubble(lua_State* L)
-{
-	// npc:setSpeechBubble(speechBubble)
-	Npc* npc = getUserdata<Npc>(L, 1);
-	if (npc) {
-		npc->setSpeechBubble(getNumber<uint8_t>(L, 2));
-	}
-	return 0;
 }
 
 // Guild

@@ -188,23 +188,23 @@ enum SpeakClasses : uint8_t {
 
 enum MessageClasses : uint8_t {
 	MESSAGE_STATUS_CONSOLE_BLUE		= 0x04, /*FIXME Blue message in the console*/
-	MESSAGE_STATUS_CONSOLE_RED		= 0x0D, /*Red message in the console*/
-	MESSAGE_STATUS_DEFAULT		= 0x11, /*White message at the bottom of the game window and in the console*/
-	MESSAGE_STATUS_WARNING		= 0x12, /*Red message in game window and in the console*/
-	MESSAGE_EVENT_ADVANCE		= 0x13, /*White message in game window and in the console*/
-	MESSAGE_STATUS_SMALL		= 0x14, /*White message at the bottom of the game window"*/
-	MESSAGE_INFO_DESCR			= 0x15, /*Green message in game window and in the console*/
-	MESSAGE_DAMAGE_DEALT		= 0x16,
-	MESSAGE_DAMAGE_RECEIVED		= 0x17,
-	MESSAGE_HEALED			= 0x18,
-	MESSAGE_EXPERIENCE			= 0x19,
-	MESSAGE_DAMAGE_OTHERS		= 0x1A,
-	MESSAGE_HEALED_OTHERS		= 0x1B,
-	MESSAGE_EXPERIENCE_OTHERS		= 0x1C,
-	MESSAGE_EVENT_DEFAULT		= 0x1D, /*White message at the bottom of the game window and in the console*/
-	MESSAGE_LOOT			= 0x1E,
-	MESSAGE_EVENT_ORANGE		= 0x23, /*Orange message in the console*/
-	MESSAGE_STATUS_CONSOLE_ORANGE	= 0x24  /*Orange message in the console*/
+	MESSAGE_STATUS_CONSOLE_RED		= 0x0C, /*Red message in the console*/
+	MESSAGE_STATUS_DEFAULT		= 0x10, /*White message at the bottom of the game window and in the console*/
+	MESSAGE_STATUS_WARNING		= 0x11, /*Red message in game window and in the console*/
+	MESSAGE_EVENT_ADVANCE		= 0x12, /*White message in game window and in the console*/
+	MESSAGE_STATUS_SMALL		= 0x13, /*White message at the bottom of the game window"*/
+	MESSAGE_INFO_DESCR			= 0x14, /*Green message in game window and in the console*/
+	MESSAGE_DAMAGE_DEALT		= 0x15,
+	MESSAGE_DAMAGE_RECEIVED		= 0x16,
+	MESSAGE_HEALED			= 0x17,
+	MESSAGE_EXPERIENCE			= 0x18,
+	MESSAGE_DAMAGE_OTHERS		= 0x19,
+	MESSAGE_HEALED_OTHERS		= 0x1A,
+	MESSAGE_EXPERIENCE_OTHERS		= 0x1B,
+	MESSAGE_EVENT_DEFAULT		= 0x1C, /*White message at the bottom of the game window and in the console*/
+	MESSAGE_LOOT			= 0x1D,
+	MESSAGE_EVENT_ORANGE		= 0x22, /*Orange message in the console*/
+	MESSAGE_STATUS_CONSOLE_ORANGE	= 0x23  /*Orange message in the console*/
 };
 
 enum FluidColors_t : uint8_t {

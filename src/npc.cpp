@@ -115,7 +115,6 @@ void Npc::reset()
 	attackable = false;
 	ignoreHeight = true;
 	focusCreature = 0;
-	speechBubble = SPEECHBUBBLE_NONE;
 
 	delete m_npcEventHandler;
 	m_npcEventHandler = nullptr;
@@ -175,10 +174,6 @@ bool Npc::loadFromXml(const std::string& filename)
 
 	if ((attr = npcNode.attribute("ignoreheight"))) {
 		ignoreHeight = attr.as_bool();
-	}
-
-	if ((attr = npcNode.attribute("speechbubble"))) {
-		speechBubble = pugi::cast<uint32_t>(attr.value());
 	}
 
 	if ((attr = npcNode.attribute("skull"))) {
